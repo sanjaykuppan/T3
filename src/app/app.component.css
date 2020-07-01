@@ -1,0 +1,10 @@
+StackLayout {
+    /** background-image: url("~/login/word1.jpg");*/
+    width: 200;
+    align-items: center;
+    align-content: center;
+    horizontal-align:center;
+    vertical-align: center;
+    background-color: aquamarine;
+    font-size: 20;
+ }
