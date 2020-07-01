@@ -1,9 +1,18 @@
-import {gamecomponent} from "./game/game.component"
+import { NgModule } from "@angular/core";
+import { Routes } from "@angular/router";
+import { NativeScriptRouterModule } from "nativescript-angular/router";
 
-export const routes = [
-       {path:"game",component:gamecomponent}
+import {logincomponent} from  "./login/login.component"
+import { gamecomponent } from "./game/game.component";
+
+const routes: Routes = [
+    { path: "", redirectTo: "/login", pathMatch: "full"},
+    {path:"login",component:logincomponent},
+    {path: "game", component: gamecomponent }
 ];
 
-export const navigatableComponents = [
-    gamecomponent
-];
+@NgModule({
+    imports: [NativeScriptRouterModule.forRoot(routes)],
+    exports: [NativeScriptRouterModule]
+})
+export class AppRoutingModule { }

@@ -1,10 +1,11 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
-
+import {NativeScriptRouterModule} from  "nativescript-angular/router"
 
 import { AppComponent } from "./app.component";
-import {NativeScriptRouterModule} from  "nativescript-angular/router"
-import { routes, navigatableComponents } from "./app.routing";
+import { AppRoutingModule } from "./app.routing";
+import { gamecomponent } from "./game/game.component";
+import { logincomponent } from "./login/login.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -19,11 +20,10 @@ import { routes, navigatableComponents } from "./app.routing";
     imports: [
         NativeScriptModule,
         NativeScriptRouterModule,
-        NativeScriptRouterModule.forRoot(routes)
+        AppRoutingModule
     ],
     declarations: [
-        AppComponent,
-        ...navigatableComponents
+        AppComponent,gamecomponent,logincomponent
     ],
     providers: [],
     schemas: [

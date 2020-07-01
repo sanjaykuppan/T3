@@ -1,8 +1,9 @@
-import { Component } from "@angular/core";
+import { Component,OnInit } from "@angular/core";
 
 @Component({
     selector:"game",
-    templateUrl:"./game.component.html"
+    templateUrl:"./game.component.html",
+    moduleId:module.id
 
 })
 export class gamecomponent{}
