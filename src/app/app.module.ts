@@ -2,6 +2,8 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import {NativeScriptRouterModule} from  "nativescript-angular/router"
 
+
+
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app.routing";
 import { gamecomponent } from "./game/game.component";
@@ -20,7 +22,8 @@ import { logincomponent } from "./login/login.component";
     imports: [
         NativeScriptModule,
         NativeScriptRouterModule,
-        AppRoutingModule
+        AppRoutingModule,
+        
     ],
     declarations: [
         AppComponent,gamecomponent,logincomponent

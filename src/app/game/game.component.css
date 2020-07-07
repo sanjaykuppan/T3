@@ -5,3 +5,17 @@
 /*StackLayout{
     background-image: url("../images/o.png");
 }*/
+.stack2{
+    orientation:horizontal;
+    horizontal-align:center;
+}
+.dock1{
+    horizontal-align:center;
+}
+.grid1{
+    width:50;
+    height:50;
+}
+.dock2{
+    horizontal-align:center;
+}

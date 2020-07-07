@@ -1,31 +1,22 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"></Page>
-<!--<AbsoluteLayout width="250" height="250" [backgroundcolor]=white >
-    <Label text=""  left="10" top="10" width="25" height="25"  (tap)="ontap()" [backgroundcolor]="game.b1<1>"></Label>
-</AbsoluteLayout>-->
-<!--<GridLayout columns="50, auto, *" rows="50, auto, *" width="210" height="210" backgroundColor="lightgray">
-    <Label text="" row="0" col="0" [backgroundColor]=""></Label>
-    <Label text="" row="0" col="1" colSpan="2" backgroundColor="green"></Label>
-    <Label text="" row="1" col="0" rowSpan="2" backgroundColor="blue"></Label>
-    <Label text="" row="1" col="1" backgroundColor="yellow"></Label>
-    <Label text="" row="1" col="2" backgroundColor="orange"></Label>
-    <Label text="" row="2" col="1" backgroundColor="pink"></Label>
-    <Label text="" row="2" col="2" backgroundColor="purple"></Label>
-</GridLayout>-->
-<StackLayout>
-  <DockLayout backgroundcolor="green">
-    <Label text="Red :" dock="left"></Label>
-    <Label [text]="game.xscore" dock="left" ></Label>
-    <Label text="Blue :" dock="left" ></Label>
-    <Label [text]="game.yscore" dock="left" backgroundColor="yellow"></Label>
+<StackLayout class="stack1">
+  <DockLayout class="dock1">
+    <Label text="Red :" dock="left" color="Red"></Label>
+    <Label [text]="game.xscore" dock="left" color="Red" ></Label>
+    <Label text="Blue :" dock="left" color="blue" ></Label>
+    <Label [text]="game.yscore" dock="left" color="blue"></Label>
   </DockLayout>
-  <!-- try ng for loop here-->
-  <GridLayout *ngFor="let i of this.game.list" width="120" height="120" backgroundcolor="blue">
-    <GridLayout *ngFor="let j of this.game.list" width="120" height="120" backgroundcolor="yellow">
-      <Label [row]="i" [col]="j" [text]="" [backgroundcolor]="game.colour[game.b1[i][j]]" (tap)="ontap()"></Label>
+  <!-- Board looping-->
+<StackLayout *ngFor="let i of this.game.list"  class="stack2"> 
+  <GridLayout *ngFor="let j of this.game.list"   class="grid1">
+      <Label [row]="i" [col]="j"  [text]="" bordercolor="black" borderwidth="2" [backgroundcolor]="game.colour[game.b1[i][j]]" (tap)="ontap(i,j)"></Label>
     </GridLayout>
-  </GridLayout>
-  <button text="Play again" ></button>
-  <button text="exit"></button>
-  </StackLayout>
+</StackLayout>
+ 
+<DockLayout class="dock2">
+  <button text="Play again" dock="left" (tap)="playagain()" ></button>
+  <button text="exit" dock="right" width="150" (tap)="goback()"></button>
+</DockLayout>
+</StackLayout>
 
     
