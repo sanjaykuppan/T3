@@ -9,13 +9,13 @@
   <!-- Board looping-->
 <StackLayout *ngFor="let i of this.game.list"  class="stack2"> 
   <GridLayout *ngFor="let j of this.game.list"   class="grid1">
-      <Label [row]="i" [col]="j"  [text]="" bordercolor="black" borderwidth="2" [backgroundcolor]="game.colour[game.b1[i][j]]" (tap)="ontap(i,j)"></Label>
+      <Label [row]="i" [col]="j"  [text]="game.b2[i][j]" bordercolor="black" borderwidth="2" [backgroundcolor]="game.colour[game.b1[i][j]]" (tap)="ontap(i,j)"></Label>
     </GridLayout>
 </StackLayout>
  
 <DockLayout class="dock2">
   <button text="Play again" dock="left" (tap)="playagain()" ></button>
-  <button text="exit" dock="right" width="150" (tap)="goback()"></button>
+  <button text="exit" dock="right" width="150"  [nsRouterLink]="['/login']" pageTransition="slide" clearHistory='true'></button>
 </DockLayout>
 </StackLayout>
 

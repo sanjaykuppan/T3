@@ -1,4 +1,5 @@
 import { Component, OnInit} from "@angular/core";
+import { Page } from "tns-core-modules/ui/page";
 
 @Component({
     selector:"login",
@@ -6,6 +7,10 @@ import { Component, OnInit} from "@angular/core";
     styleUrls: ["./login.component.css"],
 
 })
-export class logincomponent {
+export class logincomponent implements OnInit {
+    constructor(private page: Page) {}
+    ngOnInit() {
+        this.page.actionBarHidden = true;
+      }
     
 }
