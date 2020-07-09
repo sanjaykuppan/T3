@@ -1,10 +1,13 @@
 import { Component,OnInit } from "@angular/core";
 import { Page } from "tns-core-modules/ui/page";
-import {Game} from "./game.model"
+
+import {Game} from "./game.model";
+import {Support} from "./game.support";
 @Component({
     selector:"T3game",
     templateUrl:"./game.component.html",
-    styleUrls:["./game.component.css"]
+    styleUrls:["./game.component.css"],
+    providers:[Support],
 
 })
 export class gamecomponent implements OnInit{
@@ -15,7 +18,7 @@ export class gamecomponent implements OnInit{
     public rowInput = 4;   //row count
     public colsInput = 4;  //column count
     public totbox=this.rowInput*this.colsInput; //total cubes
-   constructor(private page: Page){
+   constructor(private page: Page,private support:Support){
         this.game=new Game();
         /** Initialize value to the matrix */
         this.game.b1 = Array.from(Array(this.rowInput), _ => Array(this.colsInput).fill(0));
@@ -25,9 +28,9 @@ export class gamecomponent implements OnInit{
         /** Initialize touch count  */
         this.game.tapcount=0
         /** Initialize colour for square */
-        this.game.colour=['gray','#e74c3c','#3498db',"#e74c3c", "#3498db" ] /**gray,red,blue,highlighted red,high blue */
+        this.game.colour=['gray','#e74c3c','#35f9f9',"#ff0000", "#355bf9" ] /**gray,red,blue,highlighted red,high blue */
         /** for list in looping */
-        this.game.list=[0,1,2,3]
+        this.game.list=Array.from(Array(this.rowInput).keys()) //fills the array with index 
         /** score matrix */
         this.game.b2 = Array.from(Array(this.rowInput), _ => Array(this.colsInput));
     }
@@ -42,12 +45,15 @@ export class gamecomponent implements OnInit{
         if (this.game.tapcount & 1){
             this.game.b1[i][j]=1;
             this.game.xscore=this.game.xscore+this.game.b2[i][j];
+            this.game=this.support.checkbonus(this.game)
         }
-        else{
+        if(!(this.game.tapcount&1)){
             this.game.b1[i][j]=2; 
             this.game.yscore=this.game.yscore+this.game.b2[i][j];
+            this.game=this.support.checkbonus(this.game)
         }
     } 
+    console.log(this.game)
     }
     //Play again functions, resets all parameters in the page
     playagain(){

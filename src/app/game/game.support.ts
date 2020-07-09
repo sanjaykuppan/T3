@@ -1,14 +1,18 @@
 import {Game} from "./game.model";
-export class support{
-game:Game;
+
+
+
+export class Support{
+
 public list1:Array<number>;
 public pr:number;
 public nr:number;
 public pc:number;
 public nc:number;
 public v:number;
-checkbonus(){
-    this.list1=this.game.list.slice(1,-1)
+checkbonus(game:Game){
+
+    this.list1=game.list.slice(1,-1)
     for(let i of this.list1){
         for(let j of this.list1){
             this.pr=i-1;
@@ -16,66 +20,70 @@ checkbonus(){
             this.pc=j-1;
             this.nc=j+1;
             //upper left square
-            if (this.game.b1[i][j] == this.game.b1[this.pr][this.pc] && this.game.b1[this.pr][j]==this.game.b1[i][this.pc] && 
-                this.game.b1[i][j]==this.game.b1[this.pr][j]){
-                    this.assignbonusul(i,j);
+            if (game.b1[i][j] == game.b1[this.pr][this.pc] && game.b1[this.pr][j]==game.b1[i][this.pc] && 
+                game.b1[i][j]==game.b1[this.pr][j]){
+                   game= this.assignbonusul(game,i,j);
                 }
             //upper right square
-            if(this.game.b1[i][j]==this.game.b1[this.nr][this.pc] && this.game.b1[this.pr][j]==this.game.b1[i][this.nc] &&
-                this.game.b1[i][j]==this.game.b1[i][this.nc]){
-                    this.assignbonusur(i,j);
+            if(game.b1[i][j]==game.b1[this.nr][this.pc] && game.b1[this.pr][j]==game.b1[i][this.nc] &&
+                game.b1[i][j]==game.b1[i][this.nc]){
+                   game= this.assignbonusur(game,i,j);
                 }
             //lower left square
-            if(this.game.b1[i][j]==this.game.b1[this.nr][this.pc] && this.game.b1[i][this.pc]==this.game.b1[this.nr][j] &&
-                this.game.b1[i][j]== this.game.b1[i][this.pc]){
-                    this.assignbonusll(i,j);
+            if(game.b1[i][j]==game.b1[this.nr][this.pc] && game.b1[i][this.pc]==game.b1[this.nr][j] &&
+                game.b1[i][j]== game.b1[i][this.pc]){
+                   game=this.assignbonusll(game,i,j);
                 }
             //lower right square
-            if(this.game.b1[i][j]==this.game.b1[this.nr][this.nc] && this.game.b1[i][this.nc]==this.game.b1[this.nr][j] &&
-                this.game.b1[i][j]==this.game.b1[i][this.nc]){
-                    this.assignbonuslr(i,j);
+            if(game.b1[i][j]==game.b1[this.nr][this.nc] && game.b1[i][this.nc]==game.b1[this.nr][j] &&
+                game.b1[i][j]==game.b1[i][this.nc]){
+                  game=  this.assignbonuslr(game,i,j);
                 }
         }
     }
-
+return game
 }
 //upper left assign bonus function
-assignbonusul(i,j){
-    this.v=this.checkvalue(i,j)
-        this.game.b1[i][j]=this.v;
-        this.game.b1[this.pr][this.pc]=this.v;
-        this.game.b1[this.pr][j]=this.v;
-        this.game.b1[i][this.pc]=this.v;
+assignbonusul(game:Game,i,j){
+    this.v=this.checkvalue(game,i,j)
+        game.b1[i][j]=this.v;
+        game.b1[this.pr][this.pc]=this.v;
+        game.b1[this.pr][j]=this.v;
+        game.b1[i][this.pc]=this.v;
+        return game;
 }
 //upper right assign bonus function
-assignbonusur(i,j){
-    this.v=this.checkvalue(i,j);
-        this.game.b1[i][j]=this.v;
-        this.game.b1[i][this.nc]=this.v;
-        this.game.b1[this.pr][this.nc]=this.v;
-        this.game.b1[this.pr][j]=this.v;
+assignbonusur(game:Game,i,j){
+    this.v=this.checkvalue(game,i,j);
+        game.b1[i][j]=this.v;
+        game.b1[i][this.nc]=this.v;
+        game.b1[this.pr][this.nc]=this.v;
+        game.b1[this.pr][j]=this.v;
+        return game;
 }
-assignbonuslr(i,j){
-    this.v=this.checkvalue(i,j);
-        this.game.b1[i][j]=this.v;
-        this.game.b1[i][this.nc]=this.v;
-        this.game.b1[this.nr][this.nc]=this.v;
-        this.game.b1[this.nr][j]=this.v;
+assignbonuslr(game:Game,i,j){
+    this.v=this.checkvalue(game,i,j);
+        game.b1[i][j]=this.v;
+        game.b1[i][this.nc]=this.v;
+        game.b1[this.nr][this.nc]=this.v;
+        game.b1[this.nr][j]=this.v;
+        return game;
 }
-assignbonusll(i,j){
-    this.v=this.checkvalue(i,j);
-        this.game.b1[i][j]=this.v;
-        this.game.b1[i][this.pc]=this.v;
-        this.game.b1[this.nr][this.pc]=this.v;
-        this.game.b1[this.nr][j]=this.v;
+assignbonusll(game:Game,i,j){
+    this.v=this.checkvalue(game,i,j);
+        game.b1[i][j]=this.v;
+        game.b1[i][this.pc]=this.v;
+        game.b1[this.nr][this.pc]=this.v;
+        game.b1[this.nr][j]=this.v;
+        return game;
 }
 //function to assign colour value 
-checkvalue(i,j){
-    this.v=this.game.b1[i][j]
-    if(this.game.b1[i][j]==1){
+checkvalue(game:Game,i,j){
+    this.v=game.b1[i][j]
+    if(game.b1[i][j]==1){
         this.v=3;
     }
-    if(this.game.b1[i][j]==2){
+    if(game.b1[i][j]==2){
         this.v=4;
     }
     return this.v;
