@@ -7,35 +7,20 @@ export class Game{
     b1:Array<Array<number>>; //main matrix
     b2:Array<Array<number>>; //score matrix
     b3:Array<Array<number>>; //dummy matrix
-    rowInput:number;        // row number
-    colsInput:number;       // column number
+    rowInput:number=5;        // row number
+    colsInput:number=5;       // column number
     tapcount:number;        //tap count to switch between users
-    colour:Array<string>;   // Array of colour code to fill the box in matrix
-    list:Array<number>;     //array of index to loop till row and column
+    colour:Array<string>=['gray','#e74c3c','#35f9f9',"#ff0000", "#355bf9" ]; /**gray,red,blue,highlighted red,high blue */   // Array of colour code to fill the box in matrix
+    list:Array<number>=Array.from(Array(this.rowInput).keys());     //array of index to loop till row and column
 }
 
 export class storagefunctions{  
     game:Game;  
-    storageintialize(){
-        secureStorage.removeAll();
-        this.game.rowInput=5;
-        this.game.colsInput=5;
-        this.game=new Game();
-        /** Initialize value to the matrix */
-        this.game.b1 = Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput).fill(0));
-        /** Initialize value to score */
-        this.game.xscore=0;
-        this.game.yscore=0;
-        /** Initialize touch count  */
-        this.game.tapcount=0
-        /** Initialize colour for square */
-        this.game.colour=['gray','#e74c3c','#35f9f9',"#ff0000", "#355bf9" ] /**gray,red,blue,highlighted red,high blue */
-        /** for list in looping */
-        this.game.list=Array.from(Array(this.game.rowInput).keys()) //fills the array with index 
-        /** score matrix */
-        this.game.b2 = Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput));
-}
+ constructor(){
+     this.game=new Game;
+ }
 setb1(data){
+    this.game.list=this.getlist()
     for(let i of this.game.list){
         for(let j of this.game.list){
             secureStorage.setSync({
@@ -43,18 +28,72 @@ setb1(data){
                 value:  String(data[i][j])   })
         }
     }
-console.log("B1 Set successfully")
+console.log(data)
 }
 getb1(){
+    let a:Array<Array<number>>=Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput).fill(0));  
+    this.game.list=this.getlist()
     for(let i of this.game.list){
         for(let j of this.game.list){
-            this.game.b1[i][j]=(Number(secureStorage.getSync({
-                key: String("b1").concat(String(i)).concat(String(j)) })))
+            a[i][j]=Number(secureStorage.getSync({
+                key: String("b1").concat(String(i)).concat(String(j)) }))
         }
     }
-    return this.game.b1
+    return a
 }
  getlist(){
-    return Array.from(Array(this.game.rowInput).keys())
+    return this.game.list
 }
+setxscore(data){
+    secureStorage.setSync({
+        key: String("xscore"),
+        value:  String(data)})
+    console.log("Xscore set successfully")
+}
+getxscore(){
+    return (Number(secureStorage.getSync({
+        key: String("xscore")})))
+}
+setyscore(data){
+    secureStorage.setSync({
+        key: String("yscore"),
+        value:  String(data)})
+    console.log("yscore set successfully")
+}
+getyscore(){
+    return (Number(secureStorage.getSync({
+        key: String("yscore")})))
+}
+settapcount(data){
+    secureStorage.setSync({
+        key: String("tapcount"),
+        value:  String(data)})
+        console.log("Tap count set successfully")
+    }
+geettapcount(){
+    return (Number(secureStorage.getSync({
+        key: String("tapcount")})))
+    }
+setb2(data){
+        this.game.list=this.getlist()
+        for(let i of this.game.list){
+            for(let j of this.game.list){
+                secureStorage.setSync({
+                    key: String("b2").concat(String(i)).concat(String(j)),
+                    value:  String(data[i][j])   })
+            }
+        }
+    console.log("B2 Set successfully")
+    }
+getb2(){
+        for(let i of this.game.list){
+            for(let j of this.game.list){
+                this.game.b2[i][j]=(Number(secureStorage.getSync({
+                    key: String("b2").concat(String(i)).concat(String(j)) })))
+            }
+        }
+        return this.game.b2
+    }
+
+
 }

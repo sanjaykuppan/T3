@@ -1,11 +1,11 @@
 {
   "nativescript": {
     "id": "org.nativescript.T3",
-    "tns-android": {
-      "version": "6.1.2"
-    },
     "tns-ios": {
       "version": "6.1.0"
+    },
+    "tns-android": {
+      "version": "6.1.2"
     }
   },
   "description": "NativeScript Application",
