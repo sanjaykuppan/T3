@@ -28,7 +28,6 @@ setb1(data){
                 value:  String(data[i][j])   })
         }
     }
-console.log(data)
 }
 getb1(){
     let a:Array<Array<number>>=Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput).fill(0));  
@@ -48,7 +47,7 @@ setxscore(data){
     secureStorage.setSync({
         key: String("xscore"),
         value:  String(data)})
-    console.log("Xscore set successfully")
+    //console.log("Xscore set successfully")
 }
 getxscore(){
     return (Number(secureStorage.getSync({
@@ -58,7 +57,7 @@ setyscore(data){
     secureStorage.setSync({
         key: String("yscore"),
         value:  String(data)})
-    console.log("yscore set successfully")
+   // console.log("yscore set successfully")
 }
 getyscore(){
     return (Number(secureStorage.getSync({
@@ -68,7 +67,7 @@ settapcount(data){
     secureStorage.setSync({
         key: String("tapcount"),
         value:  String(data)})
-        console.log("Tap count set successfully")
+      //  console.log("Tap count set successfully")
     }
 geettapcount(){
     return (Number(secureStorage.getSync({
@@ -83,9 +82,10 @@ setb2(data){
                     value:  String(data[i][j])   })
             }
         }
-    console.log("B2 Set successfully")
+   // console.log("B2 Set successfully")
     }
 getb2(){
+    this.game.b2=Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput));
         for(let i of this.game.list){
             for(let j of this.game.list){
                 this.game.b2[i][j]=(Number(secureStorage.getSync({
@@ -94,6 +94,4 @@ getb2(){
         }
         return this.game.b2
     }
-
-
 }

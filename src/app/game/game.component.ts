@@ -77,6 +77,7 @@ export class gamecomponent implements OnInit{
            this.game.b1=this.sf.getb1()
         }
     } 
+    //console.log(this.game)
       }
     //Play again functions, resets all parameters in the page
     playagain(){

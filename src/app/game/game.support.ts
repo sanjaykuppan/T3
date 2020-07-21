@@ -16,11 +16,11 @@ constructor(){
     this.sf=new storagefunctions();
 }
 checkbonus(){
-    console.log("check bonus")
+    //console.log("check bonus")
     this.game.b1=this.sf.getb1()        // get matrix b1
-    console.log(this.game.list)     
+    //console.log(this.game.list)     
     this.list1=this.game.list.slice(1,-1)
-    console.log(this.list1)
+    //console.log(this.list1)
     for(let i of this.list1){
         for(let j of this.list1){
             this.pr=i-1;
@@ -57,7 +57,7 @@ this.sf.setb1(this.game.b1);
 }
 //upper left assign bonus function
 assignbonusul(i,j){
-    console.log("assignbonusul")
+    //console.log("assignbonusul")
     this.v=this.checkvalue(i,j)
     this.game.b1=this.sf.getb1()
         this.game.b1[i][j]=this.v;
