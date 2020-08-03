@@ -30,78 +30,78 @@ checkbonus(){
             //upper left square
             if (this.game.b1[i][j] == this.game.b1[this.pr][this.pc] && this.game.b1[this.pr][j]==this.game.b1[i][this.pc] && 
                 this.game.b1[i][j]==this.game.b1[this.pr][j]){
-                   this.game.b1= this.assignbonusul(i,j);
-                   this.sf.setb1(this.game.b1)
+                   this.game.b1= this.assignbonusul(this.game.b1,i,j);
+                   //this.sf.setb1(this.game.b1)
                 }
             //upper right square
             if(this.game.b1[i][j]==this.game.b1[this.nr][this.pc] && this.game.b1[this.pr][j]==this.game.b1[i][this.nc] &&
                 this.game.b1[i][j]==this.game.b1[i][this.nc]){
-                   this.game.b1= this.assignbonusur(i,j);
-                   this.sf.setb1(this.game.b1)
+                   this.game.b1= this.assignbonusur(this.game.b1,i,j);
+                   //this.sf.setb1(this.game.b1)
                 }
             //lower left square
             if(this.game.b1[i][j]==this.game.b1[this.nr][this.pc] && this.game.b1[i][this.pc]==this.game.b1[this.nr][j] &&
                 this.game.b1[i][j]== this.game.b1[i][this.pc]){
-                   this.game.b1=this.assignbonusll(i,j);
-                   this.sf.setb1(this.game.b1)
+                   this.game.b1=this.assignbonusll(this.game.b1,i,j);
+                   //this.sf.setb1(this.game.b1)
                 }
             //lower right square
             if(this.game.b1[i][j]==this.game.b1[this.nr][this.nc] && this.game.b1[i][this.nc]==this.game.b1[this.nr][j] &&
                 this.game.b1[i][j]==this.game.b1[i][this.nc]){
-                  this.game.b1=  this.assignbonuslr(i,j);
-                  this.sf.setb1(this.game.b1)
+                  this.game.b1=  this.assignbonuslr(this.game.b1,i,j);
+                  //this.sf.setb1(this.game.b1)
                 }
         }
     }
 this.sf.setb1(this.game.b1);
 }
 //upper left assign bonus function
-assignbonusul(i,j){
+assignbonusul(mat,i,j){
     //console.log("assignbonusul")
-    this.v=this.checkvalue(i,j)
-    this.game.b1=this.sf.getb1()
-        this.game.b1[i][j]=this.v;
-        this.game.b1[this.pr][this.pc]=this.v;
-        this.game.b1[this.pr][j]=this.v;
-        this.game.b1[i][this.pc]=this.v;
-        return this.game.b1
+    this.v=this.checkvalue(mat,i,j)
+    //this.game.b1=this.sf.getb1()
+        mat[i][j]=this.v;
+        mat[this.pr][this.pc]=this.v;
+        mat[this.pr][j]=this.v;
+        mat[i][this.pc]=this.v;
+        return mat
 }
 //upper right assign bonus function
-assignbonusur(i,j){
-    this.v=this.checkvalue(i,j);
-    this.game.b1=this.sf.getb1()
-        this.game.b1[i][j]=this.v;
-        this.game.b1[i][this.nc]=this.v;
-        this.game.b1[this.pr][this.nc]=this.v;
-        this.game.b1[this.pr][j]=this.v;
-        return this.game.b1
+assignbonusur(mat,i,j){
+    this.v=this.checkvalue(mat,i,j);
+    
+        mat[i][j]=this.v;
+        mat[i][this.nc]=this.v;
+        mat[this.pr][this.nc]=this.v;
+        mat[this.pr][j]=this.v;
+        return mat
 }
-assignbonuslr(i,j){
-    this.v=this.checkvalue(i,j);
-    this.game.b1=this.sf.getb1()
-        this.game.b1[i][j]=this.v;
-        this.game.b1[i][this.nc]=this.v;
-        this.game.b1[this.nr][this.nc]=this.v;
-        this.game.b1[this.nr][j]=this.v;
-        return this.game.b1
+assignbonuslr(mat,i,j){
+    this.v=this.checkvalue(mat,i,j);
+    //this.game.b1=this.sf.getb1()
+        mat[i][j]=this.v;
+        mat[i][this.nc]=this.v;
+        mat[this.nr][this.nc]=this.v;
+        mat[this.nr][j]=this.v;
+        return mat
 }
-assignbonusll(i,j){
-    this.v=this.checkvalue(i,j);
-    this.game.b1=this.sf.getb1()
-        this.game.b1[i][j]=this.v;
-        this.game.b1[i][this.pc]=this.v;
-        this.game.b1[this.nr][this.pc]=this.v;
-        this.game.b1[this.nr][j]=this.v;
-        return this.game.b1
+assignbonusll(mat,i,j){
+    this.v=this.checkvalue(mat,i,j);
+    //this.game.b1=this.sf.getb1()
+        mat[i][j]=this.v;
+        mat[i][this.pc]=this.v;
+        mat[this.nr][this.pc]=this.v;
+        mat[this.nr][j]=this.v;
+        return mat
         }
 //function to assign colour value 
-checkvalue(i,j){
-    this.game.b1=this.sf.getb1()
-    this.v=this.game.b1[i][j]
-    if(this.game.b1[i][j]==1){
+checkvalue(mat,i,j){
+    //this.game.b1=this.sf.getb1()
+    this.v=mat[i][j]
+    if(mat[i][j]==1){
         this.v=3;
     }
-    if(this.game.b1[i][j]==2){
+    if(mat[i][j]==2){
         this.v=4;
     }
     return this.v;

@@ -1,5 +1,6 @@
 import { SecureStorage } from "nativescript-secure-storage";
 
+
 let secureStorage = new SecureStorage();
 export class Game{
     xscore:number;          // Red score 
@@ -85,13 +86,13 @@ setb2(data){
    // console.log("B2 Set successfully")
     }
 getb2(){
-    this.game.b2=Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput));
+    let a=Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput));
         for(let i of this.game.list){
             for(let j of this.game.list){
-                this.game.b2[i][j]=(Number(secureStorage.getSync({
+                a[i][j]=(Number(secureStorage.getSync({
                     key: String("b2").concat(String(i)).concat(String(j)) })))
             }
         }
-        return this.game.b2
+        return a
     }
 }

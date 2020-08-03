@@ -12,6 +12,9 @@
 .dock1{
     horizontal-align:center;
 }
+.board{
+    padding-right: 50px;
+}
 .grid1{
     width:50;
     height:50;

@@ -2,9 +2,11 @@
 <StackLayout class="stack1">
   <DockLayout class="dock1">
     <Label text="Red :" dock="left" color="Red"></Label>
-    <Label [text]="game.xscore" dock="left" color="Red" ></Label>
+    <Label [text]="game.xscore" dock="left" color="Red" class="board" ></Label>
     <Label text="Blue :" dock="left" color="blue" ></Label>
-    <Label [text]="game.yscore" dock="left" color="blue"></Label>
+    <Label [text]="game.yscore" dock="left" color="blue" class="board"></Label>
+    <Label text="tapcount" dock="left" color="green"></Label>
+    <Label [text]="game.tapcount" dock="left" color="green"></Label>
   </DockLayout>
   <!-- Board looping-->
 <StackLayout *ngFor="let i of this.game.list"  class="stack2"> 

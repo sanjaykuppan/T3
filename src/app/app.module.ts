@@ -4,10 +4,12 @@ import {NativeScriptRouterModule} from  "nativescript-angular/router"
 
 
 
+
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app.routing";
 import { gamecomponent } from "./game/game.component";
 import { logincomponent } from "./login/login.component";
+
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -23,6 +25,7 @@ import { logincomponent } from "./login/login.component";
         NativeScriptModule,
         NativeScriptRouterModule,
         AppRoutingModule,
+    
         
     ],
     declarations: [

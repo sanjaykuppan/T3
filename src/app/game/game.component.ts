@@ -1,8 +1,8 @@
 import { Component,OnInit } from "@angular/core";
 import { Page } from "tns-core-modules/ui/page";
-import { SecureStorage } from "nativescript-secure-storage";
 
-let secureStorage = new SecureStorage();
+
+
 import {Game} from "./game.model";
 import {storagefunctions} from "./game.model";
 import {Support} from "./game.support";
@@ -55,10 +55,12 @@ export class gamecomponent implements OnInit{
     ontap(i,j){
         //this.game.b1=this.sf.getb1();
         this.game.xscore=this.sf.getxscore()
+        //this.game.b1=this.sf.getb1()
+        //this.game.b2=this.sf.getb2()
         if(this.totbox>this.game.tapcount && this.game.b1[i][j]==0){
             this.game.tapcount++;
             this.game.b2[i][j]=Math.floor(Math.random() * (this.maxscore - this.minscore + 1)) + this.minscore;
-            this.sf.settapcount(this.game.tapcount)
+           // this.sf.settapcount(this.game.tapcount)
             this.sf.setb2(this.game.b2)
         if (this.game.tapcount & 1){
             this.game.b1[i][j]=1;
