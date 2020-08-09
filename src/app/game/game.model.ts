@@ -64,7 +64,7 @@ getyscore(){
     return (Number(secureStorage.getSync({
         key: String("yscore")})))
 }
-settapcount(data){
+/*settapcount(data){
     secureStorage.setSync({
         key: String("tapcount"),
         value:  String(data)})
@@ -73,7 +73,14 @@ settapcount(data){
 geettapcount(){
     return (Number(secureStorage.getSync({
         key: String("tapcount")})))
-    }
+    }*/
+//using session storage for tap count
+settapcount(data){
+    sessionStorage.setItem('tapcount', data);
+}
+gettapcount(){
+   return(Number( sessionStorage.getItem('tapcount')));
+}
 setb2(data){
         this.game.list=this.getlist()
         for(let i of this.game.list){
