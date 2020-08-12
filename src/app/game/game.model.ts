@@ -1,5 +1,15 @@
 import { SecureStorage } from "nativescript-secure-storage";
-
+import {
+    getBoolean,
+    setBoolean,
+    getNumber,
+    setNumber,
+    getString,
+    setString,
+    hasKey,
+    remove,
+    clear
+} from "tns-core-modules/application-settings";
 
 let secureStorage = new SecureStorage();
 export class Game{
@@ -20,7 +30,7 @@ export class storagefunctions{
  constructor(){
      this.game=new Game;
  }
-setb1(data){
+/*setb1(data){
     this.game.list=this.getlist()
     for(let i of this.game.list){
         for(let j of this.game.list){
@@ -40,29 +50,42 @@ getb1(){
         }
     }
     return a
+}*/
+//new setb1 and get b1
+setb1(data){
+    this.game.list=this.getlist()
+    for(let i of this.game.list){
+        for(let j of this.game.list){
+            setNumber(String("b1").concat(String(i)).concat(String(j)),data[i][j])   }
+        }
+
+    }
+
+getb1(){
+    let a:Array<Array<number>>=Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput).fill(0));
+    this.game.list=this.getlist();
+    for(let i of this.game.list){
+        for(let j of this.game.list){
+            a[i][j]=getNumber(String("b1").concat(String(i)).concat(String(j))) }
+        }
+    return a
 }
  getlist(){
     return this.game.list
 }
 setxscore(data){
-    secureStorage.setSync({
-        key: String("xscore"),
-        value:  String(data)})
+    setNumber("xscore",(data))
     //console.log("Xscore set successfully")
 }
 getxscore(){
-    return (Number(secureStorage.getSync({
-        key: String("xscore")})))
+    return (getNumber("xscore"))
 }
 setyscore(data){
-    secureStorage.setSync({
-        key: String("yscore"),
-        value:  String(data)})
+    setNumber("yscore",data)
    // console.log("yscore set successfully")
 }
 getyscore(){
-    return (Number(secureStorage.getSync({
-        key: String("yscore")})))
+    return (getNumber("yscore"))
 }
 /*settapcount(data){
     secureStorage.setSync({
@@ -76,18 +99,16 @@ geettapcount(){
     }*/
 //using session storage for tap count
 settapcount(data){
-    sessionStorage.setItem('tapcount', data);
+    setNumber("tapcount",data)
 }
 gettapcount(){
-   return(Number( sessionStorage.getItem('tapcount')));
+   return(getNumber( 'tapcount'));
 }
 setb2(data){
         this.game.list=this.getlist()
         for(let i of this.game.list){
             for(let j of this.game.list){
-                secureStorage.setSync({
-                    key: String("b2").concat(String(i)).concat(String(j)),
-                    value:  String(data[i][j])   })
+                setNumber(String("b2").concat(String(i)).concat(String(j)),Number(data[i][j])  )
             }
         }
    // console.log("B2 Set successfully")
@@ -96,8 +117,7 @@ getb2(){
     let a=Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput));
         for(let i of this.game.list){
             for(let j of this.game.list){
-                a[i][j]=(Number(secureStorage.getSync({
-                    key: String("b2").concat(String(i)).concat(String(j)) })))
+                a[i][j]=getNumber(String("b2").concat(String(i)).concat(String(j)))
             }
         }
         return a

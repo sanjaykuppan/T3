@@ -67,16 +67,16 @@ export class gamecomponent implements OnInit{
             this.game.xscore=this.game.xscore+this.game.b2[i][j];
             this.sf.setb1(this.game.b1)
             this.sf.setxscore(this.game.xscore)
-            this.support.checkbonus()
-            this.game.b1=this.sf.getb1()
+            //this.support.checkbonus()
+            //this.game.b1=this.sf.getb1()
         }
         if(!(this.game.tapcount&1)){
             this.game.b1[i][j]=2; 
             this.game.yscore=this.game.yscore+this.game.b2[i][j];
             this.sf.setb1(this.game.b1);
             this.sf.setyscore(this.game.yscore)
-           this.support.checkbonus()
-           this.game.b1=this.sf.getb1()
+          // this.support.checkbonus()
+           //this.game.b1=this.sf.getb1()
         }
     } 
     //console.log(this.game)
