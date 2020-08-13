@@ -11,6 +11,8 @@
 }
 .dock1{
     horizontal-align:center;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .board{
     padding-right: 50px;

@@ -1,25 +1,22 @@
-import { SecureStorage } from "nativescript-secure-storage";
-import {
-    getNumber,
-    setNumber,
-} from "tns-core-modules/application-settings";
+import { getNumber,setNumber} from "tns-core-modules/application-settings";
 
-let secureStorage = new SecureStorage();
+
 export class Game{
-    xscore:number;          // Red score 
-    yscore:number;          //Blue score
+    xscore:number=0;          // Red score 
+    yscore:number=0;          //Blue score
     b1:Array<Array<number>>; //main matrix
     b2:Array<Array<number>>; //score matrix
-    b3:Array<Array<number>>; //dummy matrix
+   // b3:Array<Array<number>>; //dummy matrix
     rowInput:number=5;        // row number
     colsInput:number=5;       // column number
-    tapcount:number;        //tap count to switch between users
+    tapcount:number=0;        //tap count to switch between users
     colour:Array<string>=['gray','#FF7E00','#35f9f9',"#FF1940", "#355bf9" ]; /**gray,red,blue,highlighted red,high blue */   // Array of colour code to fill the box in matrix
     list:Array<number>=Array.from(Array(this.rowInput).keys());     //array of index to loop till row and column
     redbonus:number=0;
     bluebonus:number=0;
     redtotal:number=0 ;
     bluetotal:number=0;
+    turn:string="Red turn to unlock treasure";
 }
 
 export class storagefunctions{  
@@ -27,20 +24,14 @@ export class storagefunctions{
  constructor(){
      this.game=new Game;
  }
-//set bonus parameter data1=redbonus data2=bluebonus
-/*setbonus(data1,data2){
-    setNumber("redbonus",data1)
-    setNumber("bluebonus",data2)
-}
-getbonus(){
-    return(getNumber("redbonus"),getNumber("bluebonus"))
-}*/
+//set bonus value for red and blue
 setredbonus(data){
     setNumber("redbonus",data)
 }
 setbluebonus(data){
     setNumber("bluebonus",data)
 }
+//get bonus value for red and blue
 getredbonus(){
     return(getNumber('redbonus'))
 }

@@ -2,9 +2,9 @@
 <StackLayout class="stack1">
 <!-- Top score board-->
 <DockLayout class="dock1">
-  <Label text="Red score :" dock="left" color="Red"></Label>
+  <Label text="Red score : " dock="left" color="Red"></Label>
   <Label [text]="game.redtotal" dock="left" color="Red" class="board" ></Label>
-  <Label text="Blue score:" dock="left" color="blue" ></Label>
+  <Label text="Blue score : " dock="left" color="blue" ></Label>
   <Label [text]="game.bluetotal" dock="left" color="blue" class="board"></Label>
 </DockLayout>
   <!-- Board looping-->
@@ -15,17 +15,17 @@
 </StackLayout>
 <!-- detailed score board-->
 <DockLayout class="dock1">
-  <Label text="Red Treasure :" dock="left" color="Red"></Label>
+  <Label text="Red Treasure : " dock="left" color="Red"></Label>
   <Label [text]="game.xscore" dock="left" color="Red" class="board" ></Label>
-  <Label text="Blue Treasure :" dock="left" color="blue" ></Label>
+  <Label text="Blue Treasure : " dock="left" color="blue" ></Label>
   <Label [text]="game.yscore" dock="left" color="blue" class="board"></Label>
-  <Label text="tapcount" dock="left" color="green"></Label>
-  <Label [text]="game.tapcount" dock="left" color="green"></Label>
+  <Label text="Player turn     " dock="left" color="green"></Label>
+  <Label [text]="game.turn" dock="left" color="green"></Label>
 </DockLayout>
 <DockLayout class="dock1">
   <Label text="Red Bonus : " dock="left" color="Red"></Label>
   <Label [text]="game.redbonus" dock="left" color="Red" class="board"></Label>
-  <Label text="Blue Bonus" dock="left" color="blue" ></Label>
+  <Label text="Blue Bonus : " dock="left" color="blue" ></Label>
   <Label [text]='game.bluebonus' dock="left" color="blue" class="board"></Label>
 </DockLayout>
 <!-- Exit and play again buttons-->

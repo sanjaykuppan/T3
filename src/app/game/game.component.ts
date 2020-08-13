@@ -21,27 +21,25 @@ export class gamecomponent implements OnInit{
     public minscore=Math.ceil(1);  //min score set
     public maxscore=Math.floor(5); //max score set
     public totbox:number; //total cubes
+    public ceiling:number;
     public a :string;
    constructor(private page: Page,private support:Support){
       
         this.game=new Game();
         this.sf=new storagefunctions();
         this.totbox=this.game.rowInput*this.game.colsInput;
+        this.ceiling=this.totbox-1;
         /** Initialize value to the matrix */
         this.game.b1 = Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput).fill(0));
         this.sf.setb1(this.game.b1);
         /** Initialize value to score */
-        this.game.xscore=0;
-        this.game.yscore=0;
+        //this.game.xscore=0;
+        //this.game.yscore=0;
         this.sf.setxscore(this.game.xscore);
         this.sf.setyscore(this.game.yscore);
         /** Initialize touch count  */
-        this.game.tapcount=0
-        this.sf.settapcount(this.game.tapcount)
-        /** Initialize colour for square */
-        //this.game.colour=['gray','#e74c3c','#35f9f9',"#ff0000", "#355bf9" ] /**gray,red,blue,highlighted red,high blue */
-        /** for list in looping */
-        //this.game.list=Array.from(Array(this.rowInput).keys()) //fills the array with index 
+       // this.game.tapcount=0
+       // this.sf.settapcount(this.game.tapcount) 
         /** score matrix */
         this.game.b2 = Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput));
         this.sf.setb2(this.game.b2);
@@ -53,11 +51,14 @@ export class gamecomponent implements OnInit{
       }
       /** score function */
     ontap(i,j){
-        //this.game.b1=this.sf.getb1();
-        this.game.xscore=this.sf.getxscore()
-        //this.game.b1=this.sf.getb1()
-        //this.game.b2=this.sf.getb2()
+        //setting click turn string
+        if(this.game.tapcount==this.ceiling || this.game.tapcount>this.ceiling)
+        {this.game.turn="All treasure unlocked"}
+        //logic to handle click and invke main functions
         if(this.totbox>this.game.tapcount && this.game.b1[i][j]==0){
+            if(!(this.game.tapcount==this.ceiling || this.game.tapcount>this.ceiling)){
+            this.game.turn=(!(this.game.tapcount &1))?"Blue turn to unlock treasure":"Red turn to unlock treasure";
+            }
             this.game.tapcount++;
             this.game.b2[i][j]=Math.floor(Math.random() * (this.maxscore - this.minscore + 1)) + this.minscore;
            // this.sf.settapcount(this.game.tapcount)
@@ -80,7 +81,6 @@ export class gamecomponent implements OnInit{
         }
     } 
     //console.log(this.game)
-    //this.game.redbonus,this.game.bluebonus=this.sf.getbonus()
     this.game.redbonus=this.sf.getredbonus()
     this.game.bluebonus=this.sf.getbluebonus()
     this.game.redtotal=this.game.redbonus+this.game.xscore;
@@ -91,13 +91,20 @@ export class gamecomponent implements OnInit{
         this.game.b1 = Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput).fill(0));
         this.sf.setb1(this.game.b1)
         /** Initialize value to score */
+        this.game.redtotal=0;
+        this.game.bluetotal=0;
         this.game.xscore=0;
         this.game.yscore=0;
+        this.game.redbonus=0;
+        this.game.bluebonus=0;
         this.sf.setxscore(this.game.xscore)
         this.sf.setyscore(this.game.yscore)
+        this.sf.setredbonus(this.game.redbonus)
+        this.sf.setbluebonus(this.game.bluebonus)
         /** Initialize touch count  */
-        this.game.tapcount=0 
+        this.game.tapcount=0; 
         this.sf.settapcount(this.game.tapcount)
+        this.game.turn="Red turn to unlock treasure";
         /** score matrix */
         this.game.b2 = Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput));
         this.sf.setb2(this.game.b2)
