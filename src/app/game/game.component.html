@@ -1,20 +1,34 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"></Page>
 <StackLayout class="stack1">
-  <DockLayout class="dock1">
-    <Label text="Red :" dock="left" color="Red"></Label>
-    <Label [text]="game.xscore" dock="left" color="Red" class="board" ></Label>
-    <Label text="Blue :" dock="left" color="blue" ></Label>
-    <Label [text]="game.yscore" dock="left" color="blue" class="board"></Label>
-    <Label text="tapcount" dock="left" color="green"></Label>
-    <Label [text]="game.tapcount" dock="left" color="green"></Label>
-  </DockLayout>
+<!-- Top score board-->
+<DockLayout class="dock1">
+  <Label text="Red score :" dock="left" color="Red"></Label>
+  <Label [text]="game.redtotal" dock="left" color="Red" class="board" ></Label>
+  <Label text="Blue score:" dock="left" color="blue" ></Label>
+  <Label [text]="game.bluetotal" dock="left" color="blue" class="board"></Label>
+</DockLayout>
   <!-- Board looping-->
 <StackLayout *ngFor="let i of this.game.list"  class="stack2"> 
   <GridLayout *ngFor="let j of this.game.list"   class="grid1">
       <Label [row]="i" [col]="j"  [text]="game.b2[i][j]" bordercolor="black" borderwidth="2" [backgroundcolor]="game.colour[game.b1[i][j]]" (tap)="ontap(i,j)"></Label>
     </GridLayout>
 </StackLayout>
- 
+<!-- detailed score board-->
+<DockLayout class="dock1">
+  <Label text="Red Treasure :" dock="left" color="Red"></Label>
+  <Label [text]="game.xscore" dock="left" color="Red" class="board" ></Label>
+  <Label text="Blue Treasure :" dock="left" color="blue" ></Label>
+  <Label [text]="game.yscore" dock="left" color="blue" class="board"></Label>
+  <Label text="tapcount" dock="left" color="green"></Label>
+  <Label [text]="game.tapcount" dock="left" color="green"></Label>
+</DockLayout>
+<DockLayout class="dock1">
+  <Label text="Red Bonus : " dock="left" color="Red"></Label>
+  <Label [text]="game.redbonus" dock="left" color="Red" class="board"></Label>
+  <Label text="Blue Bonus" dock="left" color="blue" ></Label>
+  <Label [text]='game.bluebonus' dock="left" color="blue" class="board"></Label>
+</DockLayout>
+<!-- Exit and play again buttons-->
 <DockLayout class="dock2">
   <button text="Play again" dock="left" (tap)="playagain()" ></button>
   <button text="exit" dock="right" width="150"  [nsRouterLink]="['/login']" pageTransition="slide" clearHistory='true'></button>

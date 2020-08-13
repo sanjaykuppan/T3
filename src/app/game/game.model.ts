@@ -1,14 +1,7 @@
 import { SecureStorage } from "nativescript-secure-storage";
 import {
-    getBoolean,
-    setBoolean,
     getNumber,
     setNumber,
-    getString,
-    setString,
-    hasKey,
-    remove,
-    clear
 } from "tns-core-modules/application-settings";
 
 let secureStorage = new SecureStorage();
@@ -21,8 +14,12 @@ export class Game{
     rowInput:number=5;        // row number
     colsInput:number=5;       // column number
     tapcount:number;        //tap count to switch between users
-    colour:Array<string>=['gray','#e74c3c','#35f9f9',"#ff0000", "#355bf9" ]; /**gray,red,blue,highlighted red,high blue */   // Array of colour code to fill the box in matrix
+    colour:Array<string>=['gray','#FF7E00','#35f9f9',"#FF1940", "#355bf9" ]; /**gray,red,blue,highlighted red,high blue */   // Array of colour code to fill the box in matrix
     list:Array<number>=Array.from(Array(this.rowInput).keys());     //array of index to loop till row and column
+    redbonus:number=0;
+    bluebonus:number=0;
+    redtotal:number=0 ;
+    bluetotal:number=0;
 }
 
 export class storagefunctions{  
@@ -30,28 +27,27 @@ export class storagefunctions{
  constructor(){
      this.game=new Game;
  }
-/*setb1(data){
-    this.game.list=this.getlist()
-    for(let i of this.game.list){
-        for(let j of this.game.list){
-            secureStorage.setSync({
-                key: String("b1").concat(String(i)).concat(String(j)),
-                value:  String(data[i][j])   })
-        }
-    }
+//set bonus parameter data1=redbonus data2=bluebonus
+/*setbonus(data1,data2){
+    setNumber("redbonus",data1)
+    setNumber("bluebonus",data2)
 }
-getb1(){
-    let a:Array<Array<number>>=Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput).fill(0));  
-    this.game.list=this.getlist()
-    for(let i of this.game.list){
-        for(let j of this.game.list){
-            a[i][j]=Number(secureStorage.getSync({
-                key: String("b1").concat(String(i)).concat(String(j)) }))
-        }
-    }
-    return a
+getbonus(){
+    return(getNumber("redbonus"),getNumber("bluebonus"))
 }*/
-//new setb1 and get b1
+setredbonus(data){
+    setNumber("redbonus",data)
+}
+setbluebonus(data){
+    setNumber("bluebonus",data)
+}
+getredbonus(){
+    return(getNumber('redbonus'))
+}
+getbluebonus(){
+    return(getNumber('bluebonus'))
+}
+// setb1 and get b1
 setb1(data){
     this.game.list=this.getlist()
     for(let i of this.game.list){
@@ -87,16 +83,7 @@ setyscore(data){
 getyscore(){
     return (getNumber("yscore"))
 }
-/*settapcount(data){
-    secureStorage.setSync({
-        key: String("tapcount"),
-        value:  String(data)})
-      //  console.log("Tap count set successfully")
-    }
-geettapcount(){
-    return (Number(secureStorage.getSync({
-        key: String("tapcount")})))
-    }*/
+
 //using session storage for tap count
 settapcount(data){
     setNumber("tapcount",data)
