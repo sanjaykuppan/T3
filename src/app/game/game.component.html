@@ -1,11 +1,18 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"></Page>
 <StackLayout class="stack1">
+<DockLayout class="dock1">
+  <Image src="~/app/images/title.png" stretch="None" ></Image>
+</DockLayout>
 <!-- Top score board-->
 <DockLayout class="dock1">
   <Label text="Red score : " dock="left" color="Red"></Label>
   <Label [text]="game.redtotal" dock="left" color="Red" class="board" ></Label>
   <Label text="Blue score : " dock="left" color="blue" ></Label>
   <Label [text]="game.bluetotal" dock="left" color="blue" class="board"></Label>
+</DockLayout>
+<DockLayout class="dock1">
+  <Label text="Player turn     " dock="left" color="green"></Label>
+  <Label [text]="game.turn" dock="left" color="green"></Label>
 </DockLayout>
   <!-- Board looping-->
 <StackLayout *ngFor="let i of this.game.list"  class="stack2"> 
@@ -19,8 +26,7 @@
   <Label [text]="game.xscore" dock="left" color="Red" class="board" ></Label>
   <Label text="Blue Treasure : " dock="left" color="blue" ></Label>
   <Label [text]="game.yscore" dock="left" color="blue" class="board"></Label>
-  <Label text="Player turn     " dock="left" color="green"></Label>
-  <Label [text]="game.turn" dock="left" color="green"></Label>
+
 </DockLayout>
 <DockLayout class="dock1">
   <Label text="Red Bonus : " dock="left" color="Red"></Label>

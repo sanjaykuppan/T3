@@ -10,7 +10,7 @@ export class Game{
     rowInput:number=5;        // row number
     colsInput:number=5;       // column number
     tapcount:number=0;        //tap count to switch between users
-    colour:Array<string>=['gray','#FF7E00','#35f9f9',"#FF1940", "#355bf9" ]; /**gray,red,blue,highlighted red,high blue */   // Array of colour code to fill the box in matrix
+    colour:Array<string>=['#2ecc71','#FF7E00','#35f9f9',"#FF1940", "#355bf9" ]; /**green,red,blue,highlighted red,high blue */   // Array of colour code to fill the box in matrix
     list:Array<number>=Array.from(Array(this.rowInput).keys());     //array of index to loop till row and column
     redbonus:number=0;
     bluebonus:number=0;
