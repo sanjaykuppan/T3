@@ -1,10 +1,25 @@
-StackLayout {
+/*StackLayout {
     /** background-image: url("~/login/word1.jpg");*/
-    width: 200;
+  /*  width: 200;
+    height: 500;
     align-items: center;
     align-content: center;
     horizontal-align:center;
     vertical-align: center;
     background-color: aquamarine;
-    font-size: 20;
+      font-size: 20;
+ }*/
+ .stack1{
+   vertical-align: center;
  }
+ .dock1{
+  horizontal-align:center;
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+.dock2{
+  horizontal-align:center;
+  background-color: aquamarine;
+  border-color: aquamarine;
+  font-size: 20;
+}

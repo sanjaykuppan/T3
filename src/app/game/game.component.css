@@ -5,6 +5,9 @@
 /*StackLayout{
     background-image: url("../images/o.png");
 }*/
+.stack1{
+    vertical-align: center;
+}
 .stack2{
     orientation:horizontal;
     horizontal-align:center;
