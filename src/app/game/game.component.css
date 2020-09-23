@@ -27,3 +27,9 @@
 .dock2{
     horizontal-align:center;
 }
+.label1{
+   
+    font-size: larger;
+    border-width: 2;
+    border-color: black;
+}

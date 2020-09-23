@@ -1,7 +1,7 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"></Page>
 <StackLayout class="stack1">
 <DockLayout class="dock1">
-  <Image src="~/app/images/title2.png" stretch="None" ></Image>
+  <Image src="~/app/images/title3.png" stretch="None" ></Image>
 </DockLayout>
 <!-- Top score board-->
 <DockLayout class="dock1">
@@ -17,7 +17,7 @@
   <!-- Board looping-->
 <StackLayout *ngFor="let i of this.game.list"  class="stack2"> 
   <GridLayout *ngFor="let j of this.game.list"   class="grid1">
-      <Label [row]="i" [col]="j"  [text]="game.b2[i][j]" bordercolor="black" borderwidth="2" [backgroundcolor]="game.colour[game.b1[i][j]]" (tap)="ontap(i,j)"></Label>
+      <Label class="label1" [row]="i" [col]="j"  [text]="game.b2[i][j]" [backgroundcolor]="game.colour[game.b1[i][j]]" loaded="onLabelLoaded" (tap)="ontap(i,j)"></Label>
     </GridLayout>
 </StackLayout>
 <!-- detailed score board-->

@@ -3,6 +3,7 @@ import { Page } from "tns-core-modules/ui/page";
 
 
 
+
 import {Game} from "./game.model";
 import {storagefunctions} from "./game.model";
 import {Support} from "./game.support";
@@ -14,6 +15,7 @@ import {Support} from "./game.support";
     providers:[Support],
 
 })
+
 export class gamecomponent implements OnInit{
     game:Game;
     sf:storagefunctions;
@@ -46,6 +48,7 @@ export class gamecomponent implements OnInit{
         //this.game.b3 = Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput));
        
     }
+    
     ngOnInit() {
         this.page.actionBarHidden = true;
       }
@@ -109,5 +112,7 @@ export class gamecomponent implements OnInit{
         this.game.b2 = Array.from(Array(this.game.rowInput), _ => Array(this.game.colsInput));
         this.sf.setb2(this.game.b2)
     }
+
+    
  
 }
