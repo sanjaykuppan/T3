@@ -2,7 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import {NativeScriptRouterModule} from  "nativescript-angular/router"
 
-
+import {guidecomponent} from "./guide/guide.component";
 
 
 import { AppComponent } from "./app.component";
@@ -29,7 +29,7 @@ import { logincomponent } from "./login/login.component";
         
     ],
     declarations: [
-        AppComponent,gamecomponent,logincomponent
+        AppComponent,gamecomponent,logincomponent,guidecomponent
     ],
     providers: [],
     schemas: [
